@@ -1,6 +1,6 @@
-# ChatApp
+# ReactChatApp
 
-ChatApp es una aplicación de chat en tiempo real construida con React y Vite en el frontend, y Firebase para la autenticación y la base de datos en tiempo real.
+ReactChatApp es una aplicación de chat en tiempo real construida con React y Vite en el frontend, y Firebase para la autenticación y la base de datos en tiempo real.
 
 ## Características
 
