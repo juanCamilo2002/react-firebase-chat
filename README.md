@@ -29,8 +29,8 @@ Sigue estos pasos para configurar y ejecutar el proyecto localmente.
 1. Clona este repositorio:
 
    ```sh
-   git clone https://github.com/tu-usuario/chatapp.git
-   cd chatapp
+   git clone https://github.com/juanCamilo2002/react-firebase-chat.git
+   cd react-firebase-chat
 2. Instala las dependencias:
     ```sh
     npm install
