@@ -37,15 +37,15 @@ Sigue estos pasos para configurar y ejecutar el proyecto localmente.
 
 3. Configura Firebase:
 
-Crea un proyecto en Firebase.
+    - Crea un proyecto en Firebase.
 
-- Habilita la autenticación por correo electrónico y contraseña en la sección de autenticación.
+    - Habilita la autenticación por correo electrónico y contraseña en la sección de autenticación.
 
-- Configura Firestore en modo de prueba.
+    - Configura Firestore en modo de prueba.
 
-- Copia las credenciales de configuración de Firebase y pégalas en un archivo .env en la raíz del proyecto:
-    ```sh
-    VITE_API_KEY = your_api_key
+    - Copia las credenciales de configuración de Firebase y pégalas en un archivo .env en la raíz del proyecto:
+        ```sh
+        VITE_API_KEY = your_api_key
 
 4. Inicia el servidor de desarrollo:
     ```sh
