@@ -5,3 +5,48 @@
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
+
+body{
+  background-image: url("/bg.jpg");
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  color: white;
+}
+
+.container{
+  width: 90vw;
+  height: 90vh;
+  background-color: rgba(17, 25, 40, 0.75);
+  backdrop-filter: blur(19px) saturate(100%);
+  border-radius: 12px; 
+  border: 1px solid rgba(255, 255, 255, 0.125);
+  display: flex;
+}
+
+/* Estilos globales para la scrollbar */
+/* Estilos para la barra de desplazamiento */
+::-webkit-scrollbar {
+    width: 5px; /* Ancho de la barra para elementos verticales */
+    height: 10px; /* Altura de la barra para elementos horizontales */
+}
+
+/* Estilos para el "thumb" o control deslizable de la scrollbar */
+::-webkit-scrollbar-thumb {
+    background-color: rgb(17, 25, 40); /* Color de fondo */
+    border-radius: 5px; /* Redondez del borde */
+}
+
+/* Estilos para el track o riel de la scrollbar */
+::-webkit-scrollbar-track {
+    background: transparent; /* Color de fondo */
+    border-radius: 10px; /* Redondez del borde */
+}
+
+.loading{
+  padding: 50px;
+  font-size: 36px;
+  border-radius: 10px;
+  background-color: rgba(17, 25, 40, 0.79);
+}
