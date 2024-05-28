@@ -48,7 +48,10 @@
         padding: 20px;
         cursor: pointer;
         border-bottom: 1px solid #dddddd35;
-
+        
+        &:hover {
+            background-color: rgba(17, 25, 40, 0.5);
+        }
 
         img {
             width: 50px;
