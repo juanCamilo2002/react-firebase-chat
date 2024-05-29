@@ -7,11 +7,13 @@ import { db } from '../../lib/firebase';
 import { useChatStore } from '../../lib/chatStore';
 import { useUserStore } from '../../lib/userStore';
 import upload from "../../lib/upload";
+import { formatMessageTime } from '../../lib/dateFormatter';
 
 const Chat = () => {
   const [chat, setChat] = useState({});
   const [open, setOpen] = useState(false);
   const [text, setText] = useState("");
+  const [loading, setLoading] = useState(false);
   const [img, setImg] = useState({
     file: null,
     url: ""
@@ -19,7 +21,7 @@ const Chat = () => {
 
 
   const { currentUser } = useUserStore();
-  const { chatId, user } = useChatStore();
+  const { chatId, user,  isCurrentUserBlocked, isReceiverBlocked } = useChatStore();
 
 
   const endRef = useRef(null);
@@ -37,8 +39,6 @@ const Chat = () => {
       unSub();
     }
   }, [chatId]);
-
-  console.log(chat);
 
   const handleEmoji = (e) => {
     setText((prev) => prev + e.emoji);
@@ -62,7 +62,7 @@ const Chat = () => {
     let imgUrl = null;
 
     try {
-
+      setLoading(true);
       if (img.file) {
          imgUrl = await upload(img.file)
       }
@@ -96,7 +96,7 @@ const Chat = () => {
         }
       });
 
-
+      setLoading(false)
     } catch (err) {
       console.log(err);
     }
@@ -108,14 +108,15 @@ const Chat = () => {
 
     setText("");
   }
+  console.log(chat);
 
   return (
     <div className='chat'>
       <div className="top">
         <div className="user">
-          <img src="./avatar.png" alt="" />
+          <img src={user?.avatar || "./avatar.png"} alt="" />
           <div className="texts">
-            <span>Jane Doe</span>
+            <span>{user?.username}</span>
             <p>Lorem ipsum dolor, sit amet.  </p>
           </div>
         </div>
@@ -129,11 +130,11 @@ const Chat = () => {
       <div className="center">
         {chat.messages?.map((message) => (
           <div className={message.senderId === currentUser.id ? "message own" : "message"} key={message?.createdAt}>
-            <img src="./avatar.png" alt="" />
+            <img src={message.senderId === currentUser.id ? currentUser.avatar : user.avatar} alt="" />
             <div className="texts">
               {message.img && <img src={message.img} alt="" />}
               <p>{message.text}</p>
-              {/*<span>1 min ago</span>*/}
+              <span>{formatMessageTime(message.createdAt)}</span>
             </div>
           </div>
         ))}
@@ -166,6 +167,7 @@ const Chat = () => {
           placeholder='Type a message...'
           value={text}
           onChange={e => setText(e.target.value)}
+          disabled={loading || isCurrentUserBlocked || isReceiverBlocked}
         />
         <div className="emoji">
           <img
@@ -177,7 +179,9 @@ const Chat = () => {
             <EmojiPicker open={open} onEmojiClick={handleEmoji} />
           </div>
         </div>
-        <button className='sendButton' onClick={handleSend}>Send</button>
+        <button className='sendButton' onClick={handleSend} disabled={loading || isCurrentUserBlocked || isReceiverBlocked}>
+          {loading ? "Sending..." : "Send"}
+        </button>
       </div>
     </div>
   );

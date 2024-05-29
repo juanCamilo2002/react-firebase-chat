@@ -41,6 +41,7 @@ const AddUser = () => {
                 messages: [],
             })
 
+            // Add chat to userchats
             await updateDoc(doc(userChatsRef, user.id), {
                 chats: arrayUnion({
                     chatId: newChatRef.id,
@@ -50,6 +51,7 @@ const AddUser = () => {
                 })
             });
 
+            // Add chat to current user
             await updateDoc(doc(userChatsRef, currentUser.id), {
                 chats: arrayUnion({
                     chatId: newChatRef.id,
@@ -59,7 +61,7 @@ const AddUser = () => {
                 })
             });
 
-            console.log(newChatRef.id);
+           
         } catch (err) {
             console.log(err);
         }
